@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: backend # 애플리케이션 이름을 backend로 수정
+
+  # MySQL 설정
+  datasource:
+    url: jdbc:mysql://localhost:3306/local_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: local_user
+    password: local_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Redis 설정
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  # Elasticsearch 설정
+  elasticsearch:
+    uris: http://localhost:9200
+
+  # Spring Session 설정
+  session:
+    store-type: redis # 세션 저장소로 redis 명시
+    redis:
+      flush-mode: on_save
