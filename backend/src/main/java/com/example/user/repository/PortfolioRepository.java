@@ -1,4 +1,4 @@
-package com.example.web.user.repository;
+package com.example.user.repository;
 
 import com.example.common.jpa.Portfolio;
 import org.springframework.data.jpa.repository.JpaRepository;

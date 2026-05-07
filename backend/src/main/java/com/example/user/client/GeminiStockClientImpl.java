@@ -1,6 +1,7 @@
-package com.example.web.user.client;
+package com.example.user.client;
 
 import org.springframework.stereotype.Component;
+import com.example.user.client.GeminiStockClient;
 
 import java.util.Map;
 

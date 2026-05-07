@@ -1,10 +1,10 @@
-package com.example.web.user.controller;
+package com.example.user.controller;
 
 import com.example.common.jpa.ERole;
 import com.example.common.jpa.Role;
 import com.example.common.jpa.User;
-import com.example.web.user.repository.RoleRepository;
-import com.example.web.user.repository.UserRepository;
+import com.example.user.repository.RoleRepository;
+import com.example.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

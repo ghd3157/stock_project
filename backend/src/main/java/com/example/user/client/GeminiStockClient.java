@@ -1,4 +1,4 @@
-package com.example.web.user.client;
+package com.example.user.client;
 
 import java.util.Map;
 

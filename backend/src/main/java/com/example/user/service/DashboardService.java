@@ -1,13 +1,14 @@
-package com.example.web.user.service;
+package com.example.user.service;
 
 import com.example.common.jpa.Portfolio;
 import com.example.common.jpa.User;
-import com.example.web.user.client.GeminiStockClient;
-import com.example.web.user.repository.PortfolioRepository;
-import com.example.web.user.repository.UserRepository;
+import com.example.user.client.GeminiStockClient;
+import com.example.user.repository.PortfolioRepository;
+import com.example.user.repository.UserRepository;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -28,8 +29,10 @@ public class DashboardService {
     @Cacheable(value = "dashboardData", key = "#username")
     public List<Map<String, Object>> getDashboardData(String username) {
         // 1. Find User object by username
-        User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new RuntimeException("User not found");
+        }
 
         // 2. Get the portfolio list for the user
         List<Portfolio> portfolios = portfolioRepository.findByUserId(user.getId());
@@ -43,13 +46,13 @@ public class DashboardService {
             double averagePrice = portfolio.getAveragePrice();
             double changeRate = (averagePrice == 0) ? 0 : (currentPrice - averagePrice) / averagePrice;
 
-            return Map.of(
-                    "stockName", portfolio.getStockCode(), // In reality, you need to find the stock name by its code
-                    "currentPrice", currentPrice,
-                    "changeRate", changeRate,
-                    "quantity", portfolio.getQuantity(),
-                    "averagePrice", averagePrice
-            );
+            Map<String, Object> stockData = new HashMap<>();
+            stockData.put("stockName", portfolio.getStockCode()); // In reality, you need to find the stock name by its code
+            stockData.put("currentPrice", currentPrice);
+            stockData.put("changeRate", changeRate);
+            stockData.put("quantity", portfolio.getQuantity());
+            stockData.put("averagePrice", averagePrice);
+            return stockData;
         }).collect(Collectors.toList());
     }
 }

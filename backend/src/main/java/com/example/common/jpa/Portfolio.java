@@ -1,6 +1,6 @@
 package com.example.common.jpa;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Portfolio {

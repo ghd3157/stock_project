@@ -1,6 +1,6 @@
-package com.example.web.user.controller;
+package com.example.user.controller;
 
-import com.example.web.user.service.DashboardService;
+import com.example.user.service.DashboardService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
